@@ -23,7 +23,7 @@ function binarySearch(arr, elem) {
     return -1;
 }
 
-// Refactored Version
+// REFACTORRED Version
 function binarySearch(arr, elem) {
     var start = 0;
     var end = arr.length - 1;
