@@ -18,13 +18,15 @@ class BinarySearchTree {
         }
         var current = this.root;
         while (true) {
-            if (value === current.value) return undefined;
+            // handle duplicates - prevent infinite loop
+            // alternatively - add count property to each node and increment when there's duplicate
+            if (value === current.value) return undefined; // or false
             if (value < current.value) {
                 if (current.left === null) {
                     current.left = newNode;
                     return this;
-                }
-                current = current.left;
+                } // no else needed because if T => return this above
+                current = current.left; // move to current.left cuz value < current.value
             } else {
                 if (current.right === null) {
                     current.right = newNode;
@@ -49,6 +51,7 @@ tree.insert(11)
 tree.insert(2)
 tree.insert(16)
 tree.insert(7)
+tree.insert(7) // traverse tree & find right spot - realize it already exists -> return undefined
 
 
 
