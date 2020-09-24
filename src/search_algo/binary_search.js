@@ -49,24 +49,24 @@ binarySearch([2, 5, 6, 9, 13, 15, 28, 30], 103)
 // ^problem as soon as S becomes > E OR E becomes < S
 
 // My attempt
-function binarySearch(array, num) {
-    let midpoint = Math.floor(array.length / 2);
-    let start = 0;
-    let end = array.length - 1;
-    let subArray = [];
+// function binarySearch(array, num) {
+//     let midpoint = Math.floor(array.length / 2);
+//     let start = 0;
+//     let end = array.length - 1;
+//     let subArray = [];
 
-    // make sure that num is in range of sorted array
-    // WRONG: Inifinite loop
-    while (num >= array[start] && num <= array[end]) {
-        if (num === array[midpoint]) {
-            return midpoint;
-        } else if (num < array[midpoint]) {
-            subArray = array.slice(start, midpoint);
-            binarySearch(subArray, num);
-        } else if (num > array[midpoint]) {
-            subArray = array.slice(midpoint + 1);
-            binarySearch(subArray, num);
-        }
-    }
-    return -1;
-}
+//     // make sure that num is in range of sorted array
+//     // WRONG: Inifinite loop
+//     while (num >= array[start] && num <= array[end]) {
+//         if (num === array[midpoint]) {
+//             return midpoint;
+//         } else if (num < array[midpoint]) {
+//             subArray = array.slice(start, midpoint);
+//             binarySearch(subArray, num);
+//         } else if (num > array[midpoint]) {
+//             subArray = array.slice(midpoint + 1);
+//             binarySearch(subArray, num);
+//         }
+//     }
+//     return -1;
+// }
