@@ -1,6 +1,6 @@
 // Original Solution
 function binarySearch(arr, elem) {
-    var start = 0;
+    let start = 0;
     var end = arr.length - 1;
     var middle = Math.floor((start + end) / 2);
 
@@ -25,13 +25,15 @@ function binarySearch(arr, elem) {
 
 // REFACTORRED Version
 function binarySearch(arr, elem) {
-    var start = 0;
-    var end = arr.length - 1;
-    var middle = Math.floor((start + end) / 2);
+    // create start and end pointers
+    let start = 0;
+    let end = arr.length - 1;
+    let middle = Math.floor((start + end) / 2);
 
+    // while start comes before end
     while (arr[middle] !== elem && start <= end) {
-        if (elem < arr[middle]) end = middle - 1;
-        else start = middle + 1;
+        if (elem < arr[middle]) end = middle - 1; // look in left side
+        else start = middle + 1; // look in right side
         middle = Math.floor((start + end) / 2);
     }
     return arr[middle] === elem ? middle : -1;

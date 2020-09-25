@@ -1,23 +1,32 @@
 // LEGACY VERSION (non ES2015 syntax)
-function sselectionSort(arr) {
-  for (var i = 0; i < arr.length; i++) {
-    var lowest = i;
-    for (var j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[lowest]) {
-        lowest = j;
-      }
-    }
-    if (i !== lowest) {
-      //SWAP!
-      var temp = arr[i];
-      arr[i] = arr[lowest];
-      arr[lowest] = temp;
-    }
-  }
-  return arr;
-}
+// function sselectionSort(arr) {
+//   for (var i = 0; i < arr.length; i++) {
+//     var lowest = i;
+//     for (var j = i + 1; j < arr.length; j++) {
+//       if (arr[j] < arr[lowest]) {
+//         lowest = j;
+//       }
+//     }
+//     if (i !== lowest) {
+//       //SWAP!
+//       var temp = arr[i];
+//       arr[i] = arr[lowest];
+//       arr[lowest] = temp;
+//     }
+//   }
+//   return arr;
+// }
 
 // ES2015 VERSION
+// place small values into sorted position
+// also moving from beginning to end
+
+// 1. store 1st ele as lowest
+// 2. compare this to next ele until you find smaller num -> save idx
+// 3. if smaller num found, designate smaller num to new min; continue
+// 4. if 'min'' is not value you began with, swap
+// 5. repeat w/ next ele until array is sorted
+
 function selectionSort(arr) {
   const swap = (arr, idx1, idx2) =>
     ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
