@@ -1,3 +1,5 @@
+// HELPER METHOD RECUSION
+
 function collectOddValues(arr) { //outer fn - NOT recursive
 
     let result = []; // use helper method to prevent resetting arr to empty

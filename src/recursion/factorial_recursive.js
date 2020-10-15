@@ -3,7 +3,7 @@ function factorial(num) {
     return num * factorial(num - 1);
 }
 
-factorial(4)
+factorial(4);
 // return 4 * factorial(3)
 // return 4 * 3 * factorial(2)
 // return 4 * 3 * 2 * factorial(1)
