@@ -1,0 +1,18 @@
+function hash(key, arrayLen) {
+  let total = 0;
+  for (let char of key) {
+    // map "a" to 1, "b" to 2, "c" to 3, etc.
+    let value = char.charCodeAt(0) - 96
+    total = (total + value) % arrayLen;
+  }
+  return total;
+}
+
+hash('pink', 10) // 0
+hash('orange', 10) // 0
+hash('cyan', 10) //3
+
+// Problems with current hash:
+//  1. Only hashes strings (using str.charCodeAt(idx) string method)
+//  2. Not constant time - linear in key length - scales along w/ size of input
+//  3. Could be a little more random (some duplicates)
