@@ -1,5 +1,6 @@
-// piece of data - val
-//reference to next node - next
+// Singly Linked List
+// node = stores piece of data - val
+// and stores reference to next node - next
 
 class Node {
     constructor(val) {
