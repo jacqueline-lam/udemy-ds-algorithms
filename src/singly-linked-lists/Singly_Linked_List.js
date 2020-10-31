@@ -118,6 +118,21 @@ class SinglyLinkedList {
         this.length++;
         return true
     }
+
+    remove(idx) {
+        // edge cases
+        if (idx < 0 || idx >= this.length) return undefined;
+        if (idx === 0) return this.shift()
+        if (idx === this.length - 1) return this.pop();
+
+        // use get to access node at idx - 1
+        let prevNode = this.get(idx - 1);
+        let removed = prevNode.next
+        // set next property on next node to be NEXT of the next node
+        prevNode.next = removed.next;
+        this.length--;
+        return removed;
+    }
 }
 
 
