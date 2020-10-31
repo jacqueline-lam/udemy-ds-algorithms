@@ -98,10 +98,33 @@ class SinglyLinkedList {
         }
         return false;
     }
+
+    insert(idx, val) {
+        if (idx < 0 || idx > this.length) return null;
+        // if idx = length , push new node to end
+        // use boolean operator to return true instead of list after push operation
+        if (idx === this.length) return !!this.push(val);
+        // if idx = 0, unshift new node to start
+        if (idx === 0) return !!this.unshift(val) // make sure to return true
+
+        let newNode = new Node(val)
+        // use get to access node at idx - 1
+        let prev = this.get(idx - 1);
+        let tempNext = prev.next;
+        // set next peroperty on that node to be newNode
+        prev.next = newNode;
+        // set next property on newNode to be prev next
+        newNode.next = tempNext;
+        this.length++;
+        return true
+    }
 }
 
 
-var list = new SinglyLinkedList()
+let list = new SinglyLinkedList()
 list.push("HELLO")
 list.push("GOODBYE")
+list.push("<3")
 list.push("!")
+list.get(3)
+list.insert('FAREWELL')
