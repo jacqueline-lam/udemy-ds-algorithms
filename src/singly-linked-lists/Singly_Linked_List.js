@@ -46,6 +46,34 @@ class SinglyLinkedList {
         }
         return current;
     }
+
+    shift() {
+        if (!this.head) return undefined;
+        let currentHead = this.head;
+        this.head = currentHead.next;
+        this.length--;
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return currentHead;
+    }
+
+    unshift(val) {
+        // create new node using value passed to fn
+        let newNode = new Node(val);
+        // if no head property on list, set head & tail to be newly created node
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            // set newly created node's mext property to be current head property
+            newNode.next = this.head;
+            // set hjead property on list to be newNode
+            this.head = newNode;
+        }
+        length++;
+        return this;
+    }
 }
 
 
