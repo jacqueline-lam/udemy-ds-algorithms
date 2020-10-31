@@ -74,6 +74,18 @@ class SinglyLinkedList {
         length++;
         return this;
     }
+
+    get(idx) {
+        if (idx < 0 || idx >= this.length) return null;
+        // loop thru list until you reach idx & return node at specified idx
+        let counter = 0;
+        let current = this.head;
+        while (counter !== idx) {
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
 }
 
 
