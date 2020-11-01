@@ -133,6 +133,46 @@ class SinglyLinkedList {
         this.length--;
         return removed;
     }
+
+    reverse() {
+        let current = this.head;
+        this.head = this.tail;
+        this.tail = current;
+
+        let prev = null; // make sure end of list -> tail.next = null
+        let next;
+        for (i = 0; i < this.length; i++) {
+            next = current.next;
+            current.next = prev; // null in firt iteration
+            prev = current;
+            current = next;
+        }
+        return this;
+        // [100,   201,   250,   350,      999]
+        // current next
+        // 100 -> null
+        // prev   current next
+        //         201 -> 100
+        //          prev current next
+        //                 250 -> 201
+        //                  prev  current  next
+        //                        350->250
+        //                         prev    current  next = null;
+        //                                  999 -> 350
+    }
+    // print method to help us see reversed method work
+    // help us see what's happening
+    // list.print() //[100,201,250,350,999]
+    print() {
+        let arr = [];
+        let current = this.head;
+        while (current) {
+            arr.push(current.val);
+            current = current.next;
+        }
+        coonsole.log(arr);
+    }
+
 }
 
 
@@ -143,3 +183,12 @@ list.push("<3")
 list.push("!")
 list.get(3)
 list.insert('FAREWELL')
+
+// for reverse
+list.push(100)
+list.push(201)
+list.push(250)
+list.push(350)
+list.push(999)
+list.reverse() // [100,201,250,350,999]
+list.print() // [999,350,250,201,100]
