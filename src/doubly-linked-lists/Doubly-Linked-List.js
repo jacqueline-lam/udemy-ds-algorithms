@@ -48,6 +48,22 @@ class DoublyLinkedList {
         // return popped node
         return this;
     }
+
+    shift() {
+        if (this.length === 0) return undefined;
+        var oldHead = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            // update head to be next of old head
+            this.head = oldHead.next;
+            this.head.prev = null; // remove <--
+            oldHead.next = null; // remove -->
+        }
+        this.length--;
+        return oldHead; // removed node
+    }
 }
 
 let list = new DoubleLinkedList
