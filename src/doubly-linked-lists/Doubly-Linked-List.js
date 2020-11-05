@@ -27,6 +27,27 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+
+    // remove node from end of DLL
+    pop() {
+        if (!this.head) return undefined;
+        let poppedNode = this.tail;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            // set new tail to be second last node
+            this.tail = poppedNode.prev
+            // Remove connections:
+            // new tail.next to be reset as null
+            this.tail.next = null;
+            // old tail's prev set to null
+            poppedNode.prev = null; // just to clean up extra ref
+        }
+        this.length--;
+        // return popped node
+        return this;
+    }
 }
 
 let list = new DoubleLinkedList
