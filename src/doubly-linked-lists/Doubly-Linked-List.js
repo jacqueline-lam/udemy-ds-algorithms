@@ -50,7 +50,7 @@ class DoublyLinkedList {
 
     shift() {
         if (this.length === 0) return undefined;
-        var oldHead = this.head;
+        let oldHead = this.head;
         if (this.length === 1) {
             this.head = null;
             this.tail = null;
@@ -65,22 +65,25 @@ class DoublyLinkedList {
     }
 
     unshift(val) {
-        var newNode = new Node(val);
+        let newNode = new Node(val);
         if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
         } else {
+            //set prev property on head to be new node
             this.head.prev = newNode;
+            // set next proeprty of new node to be current head property
             newNode.next = this.head;
+            // update head to be new node
             this.head = newNode;
         }
         this.length++;
-        return this;
+        return this; // return the list
     }
 
     get(index) {
         if (index < 0 || index >= this.length) return null;
-        var count, current;
+        let count, current;
         if (index <= this.length / 2) {
             count = 0;
             current = this.head;
