@@ -82,6 +82,7 @@ class DoublyLinkedList {
     }
 
     get(index) {
+        // error or edge case
         if (index < 0 || index >= this.length) return null;
         let count, current;
         if (index <= this.length / 2) {
@@ -105,6 +106,7 @@ class DoublyLinkedList {
     set(index, val) {
         var foundNode = this.get(index);
         if (foundNode != null) {
+            // set value of returned node to be value passed to fn
             foundNode.val = val;
             return true;
         }
@@ -113,13 +115,15 @@ class DoublyLinkedList {
 
     insert(index, val) {
         if (index < 0 || index > this.length) return false;
+        // double operator to return boolean instead of 'this' (DLL)
         if (index === 0) return !!this.unshift(val);
         if (index === this.length) return !!this.push(val);
 
-        var newNode = new Node(val);
-        var beforeNode = this.get(index - 1);
-        var afterNode = beforeNode.next;
+        let newNode = new Node(val);
+        let beforeNode = this.get(index - 1);
+        let afterNode = beforeNode.next;
 
+        // set next & prev properties on correct nodes to link everything together
         beforeNode.next = newNode, newNode.prev = beforeNode;
         newNode.next = afterNode, afterNode.prev = newNode;
         this.length++;
@@ -130,3 +134,9 @@ class DoublyLinkedList {
 let list = new DoubleLinkedList
 list.push('first item')
 list.push('last item')
+list.set(0, "HARRY POTTER") // true
+list.push('Harry')
+list.push('Ron')
+list.push('Hermione')
+list.insert(10, 'LAST') // false
+list.insert(1, 'Tonks') // true
