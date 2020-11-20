@@ -127,7 +127,28 @@ class DoublyLinkedList {
         beforeNode.next = newNode, newNode.prev = beforeNode;
         newNode.next = afterNode, afterNode.prev = newNode;
         this.length++;
+
         return true;
+    }
+
+    // remove node in a DLL by a certion position
+    remove(index) {
+        if (index < 0 || index >= this.length) return false;
+        if (inedex === 0) return this.shift();
+        if (index === this.length - 1) return this.pop();
+
+        // update next & prev properties to remove found node from list
+        let removedNode = this.get(index)
+        removedNode.prev.next = removedNode.next
+        removedNode.next.prev = removedNode.prev
+
+        // clearning up loose ends
+        // set next & prev to null on found node
+        removedNode.next = null;
+        removedNode.prev = null;
+
+        this.length--;
+        return removedNode;
     }
 }
 
@@ -140,3 +161,5 @@ list.push('Ron')
 list.push('Hermione')
 list.insert(10, 'LAST') // false
 list.insert(1, 'Tonks') // true
+list.remove(-1) //undefined
+list.remove(0) // Node with val = 'first item'
