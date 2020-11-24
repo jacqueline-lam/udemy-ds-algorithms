@@ -45,9 +45,9 @@ class DoublyLinkedList {
         }
         this.length--;
         // return popped node
-        return this;
+        return poppedNode;
     }
-
+    // remove node at beginning of DLL and return removed node
     shift() {
         if (this.length === 0) return undefined;
         let oldHead = this.head;
@@ -103,8 +103,9 @@ class DoublyLinkedList {
         return current;
     }
 
+    // update the value of node at index w/ new value
     set(index, val) {
-        var foundNode = this.get(index);
+        let foundNode = this.get(index);
         if (foundNode != null) {
             // set value of returned node to be value passed to fn
             foundNode.val = val;
@@ -150,7 +151,24 @@ class DoublyLinkedList {
         this.length--;
         return removedNode;
     }
-}
+
+    // reverse all of the nodes and return list
+    reverse() {
+        //     let current = this.head;
+        //     this.head = this.tail;
+        //     this.tail = current;
+
+        //     let prev = null; // make sure end of list -> tail.next = null
+        //     let next;
+        //     for (i = 0; i < this.length; i++) {
+        //         next = current.next;
+        //         current.next = prev; // null in firt iteration
+        //         prev = current;
+        //         current = next;
+        //     }
+        //     return this;
+        // }
+    }
 
 let list = new DoubleLinkedList
 list.push('first item')
