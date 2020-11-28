@@ -81,6 +81,7 @@ class DoublyLinkedList {
         return this; // return the list
     }
 
+    // find a node at specified index in DLL
     get(index) {
         // error or edge case
         if (index < 0 || index >= this.length) return null;
@@ -152,23 +153,40 @@ class DoublyLinkedList {
         return removedNode;
     }
 
-    // reverse all of the nodes and return list
+    // Reverse all of the nodes and return list
+    // swap prev and next pointers for all nodes,
+    // change prev of the head (or start) and change the head pointer in the end
     reverse() {
-        //     let current = this.head;
-        //     this.head = this.tail;
-        //     this.tail = current;
+        if (this.length === 0) {
+            return null;
+        } else {
+            let current = this.head;
+            let prevNode = null;
+            let nextNode = null;
 
-        //     let prev = null; // make sure end of list -> tail.next = null
-        //     let next;
-        //     for (i = 0; i < this.length; i++) {
-        //         next = current.next;
-        //         current.next = prev; // null in firt iteration
-        //         prev = current;
-        //         current = next;
-        //     }
-        //     return this;
-        // }
+            for (let i = 0; i < this.length; i++) {
+                prevNode = current.prev;
+                nextNode = current.next;
+
+                if (prevNode === null) {
+                    // swap head with tail
+                    this.tail = current;
+                    current.next = null;
+                    current.prev = nextNode;
+                } else if (nextNode === null) {
+                    this.head = current;
+                    current.prev = null;
+                    current.next = prevNode
+                } else {
+                    current.next = prevNode;
+                    current.prev = nextNode;
+                }
+                current = nextNode;
+            }
+        }
+        return this;
     }
+}
 
 let list = new DoubleLinkedList
 list.push('first item')
