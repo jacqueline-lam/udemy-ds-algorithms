@@ -34,3 +34,12 @@ class Stack {
     return temp.value;
   }
 }
+
+let stack = new Stack();
+stack.push('first') // 1
+stack.push('second') // 2
+stack.push('third') // 3
+stack.pop() // third
+stack.pop() // second
+stack.pop() // first
+stack.pop() // null
