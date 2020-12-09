@@ -28,26 +28,35 @@ class Queue {
     this.size = 0;
   }
   enqueue(val) { // add something into queue
-    var newNode = new Node(val);
+    let newNode = new Node(val);
     if (!this.first) {
       this.first = newNode;
       this.last = newNode;
     } else {
       this.last.next = newNode;
-      this.last = newNode;
+      this.last = newNode; // move over pointer
     }
-    return ++this.size;
+    return ++this.size; // increment size of queue by 1
   }
 
   dequeue() { // return & remove first thing added in
     if (!this.first) return null;
 
-    var temp = this.first;
-    if (this.first === this.last) {
+    let temp = this.first; // current 1st node
+    if (this.first === this.last) { // there's only 1 node (edge case)
       this.last = null;
     }
-    this.first = this.first.next;
-    this.size--;
-    return temp.value;
+    this.first = this.first.next; // updated to be next item
+    this.size--; // decrement queue size by 1
+    return temp.value; // return removed node;
   }
 }
+
+let queueSLL = new Queue();
+queueSLL.enqueue('first'); // 1
+queueSLL.enqueue('second'); // 2
+queueSLL.enqueue('third'); // 3
+queueSLL.dequeue(); //'first'
+queueSLL.dequeue(); //'second'
+queueSLL.dequeue(); //'third'
+queueSLL.dequeue(); // null
