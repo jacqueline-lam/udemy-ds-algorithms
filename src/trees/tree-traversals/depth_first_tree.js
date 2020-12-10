@@ -96,6 +96,19 @@ class BinarySearchTree {
 
     return data; // return order of visiting nodes
   }
+
+  DFSPostOrder() {
+    let data = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value)
+    }
+    traverse(this.root);
+
+    return data;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -106,3 +119,4 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 tree.DFSPreOrder(); // [10, 6, 3, 8, 15, 20]
+tree.DFSPostOrder(); // [3, 8, 6, 20, 15, 10]
