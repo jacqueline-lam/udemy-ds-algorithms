@@ -82,15 +82,18 @@ class BinarySearchTree {
   // Depth First Tree
   DFSPreOrder() {
     let data = [];
+    // current var not needed unless you want to traverse from specific node
+    // let current = this.root;
 
     // helper function
     function traverse(node) {
       data.push(node.value);
-      if (node.left) traverse(node.left);
-      if (node.right) traverse(node.right);
+      if (node.left) traverse(node.left); //recursively calling
+      if (node.right) traverse(node.right); //recursively calling
     }
+    // invoke traverse with current / root
     traverse(this.root);
 
-    return data;
+    return data; // return order of visiting nodes
   }
 }
