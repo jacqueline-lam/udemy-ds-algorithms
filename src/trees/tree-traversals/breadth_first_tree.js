@@ -35,6 +35,7 @@ class BinarySearchTree {
       }
     }
   }
+
   find(value) {
     if (this.root === null) return false;
     let current = this.root,
@@ -51,6 +52,7 @@ class BinarySearchTree {
     if (!found) return undefined;
     return current;
   }
+
   contains(value) {
     if (this.root === null) return false;
     let current = this.root,
@@ -67,6 +69,21 @@ class BinarySearchTree {
     return false;
   }
 
+  BFS() {
+    let node = this.root,
+      data = [],
+      queue = [];
+    queue.push(node); // must add root to queue first in order for while (queue.length) to eval as true
+
+    while (queue.length) { // can't use !queue - empty array is truthy (![] = false)
+      node = queue.shift(); // remove node from beginning
+      data.push(node.value); // add to list that will be returned
+      // add children nodes to queue
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data;
+  }
 
 }
 
