@@ -33,5 +33,6 @@ let removeDuplicates = function (nums) {
       nums[i] = nums[j]
     }
   }
+
   return i + 1; // return array length (= idx of i + 1)
 }
