@@ -21,6 +21,7 @@
 // rotate 2 steps to the right: [3,99,-1,-100]
 
 //runtime = 116ms; memory = 39MB
+// O(k * k) time and O(1) space - numbers are shifted by one step(O(k)) k times
 let rotate = function (nums, k) {
   let rotations = k % nums.length;
   for (let j = 0; j < rotations; j++) {
@@ -30,6 +31,7 @@ let rotate = function (nums, k) {
   return nums;
 }
 
+// O(n) time and O(1) space complexity
 // reverse method - 88ms runtime and 39.5MB memory
 let rotateNums = function (nums, k) {
   k = k % nums.length; // rotations needed
