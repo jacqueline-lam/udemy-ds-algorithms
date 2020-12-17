@@ -13,8 +13,8 @@
 // one pointer for iterating the array and
 // another pointer that works on non-zero elements of the array
 
-// curr used to find non-zero ele and anchor stays back -
-// only move forward when curr finds non-zero and swap with it
+// curr used to find next non-zero ele and anchor stays back -
+// anchor only advances when curr finds non-zero and swaps with it
 
 let moveZeroes = function (nums) {
   let anchor = 0; // j to keep track of non-zeros
