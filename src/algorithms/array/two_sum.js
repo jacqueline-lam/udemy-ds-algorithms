@@ -17,21 +17,26 @@
 // Input: nums = [3,3], target = 6
 // Output: [0,1]
 
+// O(N) time and O(N) space
+// traverse list containing n elements twice O(2N) + hash look up time = O(1) = O(N)
+// extra space depends on # of items in hash = n elements
+
+// Two-pass Hash
 let twoSum = function (nums, target) {
   let numsHash = {};
 
   for (let i = 0; i < nums.length; i++) {
     numsHash[nums[i]] = i;
-  }
-  console.log(numsHash)
+  };
+
   for (let j = 0; j < nums.length; j++) {
     let complement = target - nums[j];
     // check if ele's complement exists in hash
     // make sure complement is not nums[j] itself
     if (numsHash.hasOwnProperty(complement) && numsHash[complement] !== j) {
-      return [j, numsHash[complement]]
+      return [j, numsHash[complement]];
     }
-  }
+  };
 
   // Incorrect to loop through hash -
   // -> won't be able to differ the index of the two 3s
