@@ -21,7 +21,7 @@
 // traverse list containing n elements twice O(2N) + hash look up time = O(1) = O(N)
 // extra space depends on # of items in hash = n elements
 
-// Two-pass Hash
+// Two-pass Hash - 88ms
 let twoSum = function (nums, target) {
   let numsHash = {};
 
@@ -52,16 +52,36 @@ let twoSum = function (nums, target) {
   //   }
   // }
 
-  // Solution 2
-  let twoSum = function (nums, target) {
-    let map = new Map();
+  // Solution 2 - 80ms - One-pass Map
+  //  Map object holds key-value pairs and remembers the original insertion order of the keys.
+  // Any value (both objects and primitive values) may be used as either a key or a value
+  let twoSumB = function (nums, target) {
+    let numberIdx = new Map();
+    let result = [];
 
     for (let i = 0; i < nums.length; i++) {
       let num = nums[i];
-      if (map.get(num) === undefined) map.set(target - num, i);
-      else return [map.get(num), i];
+      let complement = target - num;
+      if (numberIdx.has(complement)) {
+        result[0] = numberIdx.get(complement)
+        result[1] = i;
+        return result;
+      }
+      numberIdx.set(num, i);
     }
   };
+
+  // Solution 3 - faster 76ms - One-pass Hash
+  let twoSumC = function (nums, target) {
+    let numIdx = {}
+    for (let i = 0; i < nums.length; i++) {
+      let complement = target - nums[i]
+      if (complement in numIdx) {
+        return [numIdx[complement], i]
+      }
+      numIdx[nums[i]] = i;
+    }
+  }
 
 };
 
