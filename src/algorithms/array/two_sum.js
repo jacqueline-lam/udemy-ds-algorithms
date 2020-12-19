@@ -51,6 +51,18 @@ let twoSum = function (nums, target) {
   //     return answer; // return now to avoid duplicate [xIdx, yIdx, yIdx, xIdx]
   //   }
   // }
+
+  // Solution 2
+  let twoSum = function (nums, target) {
+    let map = new Map();
+
+    for (let i = 0; i < nums.length; i++) {
+      let num = nums[i];
+      if (map.get(num) === undefined) map.set(target - num, i);
+      else return [map.get(num), i];
+    }
+  };
+
 };
 
 twoSum([3, 2, 4], 6) // [1,2]
