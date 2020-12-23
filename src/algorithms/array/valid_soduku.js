@@ -43,7 +43,7 @@ let isValidSudoku = function (board) {
     for (let col = 0; col < 9; col++) {
       const value = board[row][col];
       if (value !== '.') {
-        // check all three rule for every single num
+        // check all three rule for every single cell
         if (!isValidRow(board, row, col, value) ||
           !isValidCol(board, row, col, value) ||
           !isValidBox(board, row, col, value)) {
@@ -58,7 +58,8 @@ let isValidSudoku = function (board) {
 function isValidRow(board, currentRow, currentCol, value) {
   for (let col = 0; col < 9; col++) {
     if (col !== currentCol) { //exclude currentCol
-      // every other num must not = num at currCol
+      // every other cell must not = value of cell at currCol
+      // check if this value has been already seen before
       if (board[currentRow][col] === value) {
         return false;
       }
@@ -70,6 +71,7 @@ function isValidRow(board, currentRow, currentCol, value) {
 function isValidCol(board, currentRow, currentCol, value) {
   for (let row = 0; row < 9; row++) {
     if (row !== currentRow) {
+      // check if this value has been already seen before
       if (board[row][currentCol] === value) {
         return false;
       }
@@ -79,15 +81,16 @@ function isValidCol(board, currentRow, currentCol, value) {
 }
 
 function isValidBox(board, currentRow, currentCol, value) {
-  const startRow = currentRow - (currentRow % 3);
-  const startCol = currentCol - (currentCol % 3);
+  const startRow = currentRow - (currentRow % 3); //0, 3, or 6
+  const startCol = currentCol - (currentCol % 3); //0, 3, or 6
 
   // iterate over three rows
   for (let row = startRow; row < (startRow + 3); row++) {
     // iterate over each box
     for (let col = startCol; col < (startCol + 3); col++) {
-      // exclude current row and column (box)
+      // exclude current row and column (cell)
       if (row !== currentRow && col !== currentCol) {
+        // check if this value has been already seen before
         if (board[row][col] === value) {
           return false;
         }
