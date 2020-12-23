@@ -97,5 +97,5 @@ function isValidBox(board, currentRow, currentCol, value) {
       }
     }
   }
-  // return true;
+  return true;
 }
