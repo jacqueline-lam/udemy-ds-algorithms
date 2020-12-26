@@ -26,7 +26,7 @@
 // if start is 0, remove integer 0
 // if split x.length = 1 and int = 0 , return 0
 
-let reverseInt = function (x) {
+let reverseIntA = function (x) {
   let converted = x.toString().split('');
   let upperLimit = Math.pow(2, 31);
   let lowerLimit = -1 * upperLimit;
@@ -43,9 +43,17 @@ let reverseInt = function (x) {
   } else {
     reversed = parseInt(converted.reverse().join(''));
   }
-  if (reversed < lowerLimit || reversed > upperLimit) {
-    return 0;
-  } else {
-    return reversed;
-  }
+  return reversed > lowerLimit && reversed < upperLimit ? reversed : 0;
 };
+
+// Refactored - 80MS
+let reverseIntB = function (x) {
+  const max = Math.pow(2, 31) - 1;
+  const min = Math.pow(-2, 31);
+  const sign = Math.sign(x);
+  // convert x to str -> arr then reverse -> str
+  const num = (x * sign).toString().split('').reverse().join('');
+  // convert to negative if needed
+  const result = parseInt(num) * sign
+  return result > min && result < max ? result : 0;
+}
