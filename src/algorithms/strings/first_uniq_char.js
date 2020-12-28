@@ -1,4 +1,4 @@
-// First Unique Character in a String
+// 387. First Unique Character in a String
 
 // Given a string, find the first non-repeating character in it
 // and return its index. If it doesn't exist, return -1.
@@ -10,6 +10,8 @@
 // return 2.
 
 // Note: You may assume the string contains only lowercase English letters.
+
+// Linear Time Solution
 // Runtime: 116 ms
 // Memory Usage: 42.7 MB
 // O(N) time - go thru str of length N 2 times and O(1) space
