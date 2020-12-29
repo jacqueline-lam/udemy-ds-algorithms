@@ -46,5 +46,7 @@ let isAnagram = function (s, t) {
   return true;
 
 }
-
-
+// JS unicode single line solution
+let isAnagramB = function (s, t) {
+  return [...s].sort().join('') === [...t].sort().join('')
+};
