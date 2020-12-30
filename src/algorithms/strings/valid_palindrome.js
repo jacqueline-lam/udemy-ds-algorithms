@@ -35,13 +35,12 @@ let isPalindrome = function (s) {
   let left = 0;
   let right = s.length - 1;
 
-  for (let i = 0; i < s.length; i++) {
+  while (left < right) {
     if (s[left] !== s[right]) {
       return false;
-    } else {
-      left++;
-      right--;
     }
+    left++;
+    right--;
   }
   return true;
 };
