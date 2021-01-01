@@ -18,11 +18,10 @@
 
 
 // Example 1:
-
 // Input: str = "42"
 // Output: 42
-// Example 2:
 
+// Example 2:
 // Input: str = "   -42"
 // Output: -42
 // Explanation: The first non-whitespace character is '-', which is the minus sign. Then take as many numerical digits as possible, which gets 42.
@@ -51,34 +50,86 @@
 // Input: "  -0012a42"
 // Output: -12 (NOT -12)
 
+// Example 8:
+// Input: "    +0 123"
+// Output: 0 (NOT 123)
+
 // Constraints:
 // 0 <= s.length <= 200
 // s consists of English letters (lower-case and upper-case), digits, ' ', '+', '-' and '.'.
 
+
+// RUNTIME: 112 ms - beats 28%
+// MEMORY: 41.1 MB
 let myAtoi = function (s) {
-  // Remove white-space
-  // \s = white-space char; g = global match;
-  s = s.replace(/\s/g, '') // equal to s = s.trim()
+  let idx = 0;
+  let integralNums = '';
+  // Skip white-space until first non-whitespace character
+  while (s.charAt(idx) === ' ') idx++;
 
-  // Test case for 1st char
-  let regexp = /^[0-9 ()+-]$/
-  //1st non-whitespace char is not num or +/- sign
-  if (!regexp.test(s[0])) return 0;
-
-  // remove chars that are non-numerical digit
-  // ^ = "anything not in this list of characters"
-  // + after the [...] group means "one or more".
-  // /gi = replace all and without regard to case
-
-  for (let i = 0; i < s.length; i++) {
-    if (.test)
+  // Check for optional +/- sign
+  if (s.charAt(idx) === '+' || s.charAt(idx) === '-') {
+    let sign = s.charAt(idx);
+    integralNums += sign
+    idx++;
   }
-  let numericalOnly = parseInt(s.replace(/[^0-9 ().+-]+/gi, ''));
 
-  let max = Math.pow(2, 31) - 1, min = Math.pow(-2, 31)
-  if (numericalOnly > max) return max;
-  if (numericalOnly < min) return min;
+  // Check for consecutive integral numbers
+  while (idx < s.length) {
+    const char = s.charAt(idx);
+    const regexp = /^[0-9 ().]$/g
+    if (regexp.test(char)) {
+      integralNums += char;
+      idx++;
+    } else {
+      break;
+    }
+  }
+
+  // convert str to int
+  integralNums = parseInt(integralNums)
+
+  // Test for 32-bit bounderdaries
+  const INT_MAX = Math.pow(2, 31) - 1;
+  const INT_MIN = Math.pow(-2, 31);
+  if (integralNums > INT_MAX) return INT_MAX;
+  if (integralNums < INT_MIN) return INT_MIN;
   // if NaN or undefined, return 0 (e.g. input '+-12')
-  if (!numericalOnly) return 0;
-  return numericalOnly;
+  if (!integralNums) return 0;
+
+  return integralNums;
 }
+
+// Original Solution - incorrect trimming of white space
+// let myAtoiX = function (s) {
+//   // INCORRECT approach - we should NOT remove ALL white space - only until 1st non-white space char
+//   // Remove white-space
+//   // \s = white-space char; g = global match;
+//   s = s.replace(/\s/g, '') // equal to s = s.trim()
+
+//   // Test case for 1st char
+//   let regexp = /^[0-9 ().+-]$/
+//   //1st non-whitespace char is not num or +/- sign
+//   if (!regexp.test(s[0])) return 0;
+
+//   // remove chars that are non-numerical digit
+//   // ^ = "anything not in this list of characters"
+//   // + after the [...] group means "one or more".
+//   // /gi = replace all and without regard to case
+//   let numericalOnly = s;
+//   for (let i = 1; i < s.length; i++) {
+//     if (!regexp.test(s[i])) {
+//       // slice() extracts up to but not including endIndex.
+//       numericalOnly = s.slice(0, i)
+//       break;
+//     }
+//   }
+//   // let numericalOnly = parseInt(s.replace(/[^0-9 ().+-]+/gi, ''));
+//   let result = parseInt(numericalOnly)
+//   let max = Math.pow(2, 31) - 1, min = Math.pow(-2, 31)
+//   if (result > max) return max;
+//   if (result < min) return min;
+//   // if NaN or undefined, return 0 (e.g. input '+-12')
+//   if (!result) return 0;
+//   return result;
+// }
