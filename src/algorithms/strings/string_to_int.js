@@ -100,6 +100,54 @@ let myAtoi = function (s) {
   return integralNums;
 }
 
+
+let myAtoiB = function (s) {
+  const MIN_INT = Math.pow(-2, 31);
+  const MAX_INT = Math.pow(2, 31) - 1;
+  // matches a string from start followed by zero or more ' '
+  const firstWhiteSpaces = /^ */;
+  // {0,1} - zero or one +/- sign removed
+  // \d+ one or more digitis
+  const numWithSign = /^[+,-]{0,1}\d+/;
+
+  let s1 = s.replace(firstWhiteSpaces, '');
+  //match() retrieves result of matching a str against a regular expression
+  let s2 = s1.match(numWithSign);
+  let result = 0;
+  if (s2) {
+    result = s2[0];
+    let signedVal = result[0]
+    if (signedVal === '-' || signedVal === '+') {
+      result = result.substring(1);
+    }
+    result = Number(result) * (signedVal === '-' ? -1 : 1);
+  }
+
+  if (result < MIN_INT) {
+    result = MIN_INT;
+  } else if (result > MAX_INT) {
+    result = MAX_INT;
+  }
+  return result;
+}
+
+const myAtoiC = s => {
+  const noSpaces = s.trim();
+  if (!isNaN(parseInt(noSpaces))) {
+    const parsedNum = parseInt(noSpaces);
+    if (parsedNum <= Math.pow(2, 31) - 1 && parsedNum >= Math.pow(-2, 31)) {
+      return parsedNum;
+    }
+    if (parsedNum > Math.pow(2, 31) - 1) {
+      return Math.pow(2, 31) - 1;
+    }
+    if (parsedNum < Math.pow(-2, 31)) {
+      return Math.pow(-2, 31);
+    }
+  }
+  return 0;
+}
+
 // Original Solution - incorrect trimming of white space
 // let myAtoiX = function (s) {
 //   // INCORRECT approach - we should NOT remove ALL white space - only until 1st non-white space char
