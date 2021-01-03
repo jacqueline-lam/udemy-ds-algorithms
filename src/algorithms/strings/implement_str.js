@@ -25,6 +25,10 @@
 // 0 <= haystack.length, needle.length <= 5 * 104
 // haystack and needle consist of only lower-case English characters.
 
+// Runtime: 80 ms
+// Memory Usage: 39 MB
+
 let strStr = function (haystack, needle) {
-  return Number;
+  // .indexOf() will return idx of first ele in needle
+  return haystack.indexOf(needle)
 };
