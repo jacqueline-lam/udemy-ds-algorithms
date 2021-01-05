@@ -76,3 +76,37 @@ let countAndSay = function (n) {
 };
 
 // counAndSay(4) // => '1211'
+
+
+// SOLUTION #2
+// 72MS runtime
+
+// PSEUDOCODE
+// Initialize counter for curr char to 1
+// Iterate through the string
+// Increment count if same digit in i+1th position
+// Else
+// append char and count in string result
+// reset counter
+
+var countAndSay = function (n) {
+  if (n === 1) {
+    return "1";
+  }
+
+  let s = countAndSay(n - 1);
+  let result = '';
+  let count = 1;
+  let i = 1;
+
+  while (i < s.length + 1) {
+    if (i < s.length && s[i] === s[i - 1]) {
+      count++;
+    } else {
+      result += count + s[i - 1];
+      count = 1;
+    }
+    i++;
+  }
+  return result;
+};
