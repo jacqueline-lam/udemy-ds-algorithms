@@ -43,36 +43,36 @@
 // 10.     13211311123113112211
 
 let countAndSay = function (n) {
-  let curr = "1";
+  // base case
+  let curr = "1"; // ...'21'
 
-  for (let i = 1; i < n; i++) {
+  for (let i = 1; i < n; i++) { // i = 1 < n = 4 for countAndSay(4) -> 3 < n = 4
     let temp = "";
 
     let cursor = 0;
     let lastChar = curr[0];
     let count = 0;
 
+    // each while loop represent each countAndSay(n)
     while (cursor < curr.length) {
-      if (lastChar !== curr[cursor]) {
-        temp += count + lastChar;
-        lastChar = curr[cursor];
+      // cursor = 0; curr.length = 2 (n=3 -> 21)
+      // cursor = 1; curr.length = 2 (n=3 -> 21)
+      // IF NEW INTEGER APPEARS
+      if (lastChar !== curr[cursor]) { // 2!==2? --> 2!==curr[1] = 1
+        temp += count + lastChar; // temp = '12'
+        lastChar = curr[cursor]; // lastChar =curr[1]= 1 ->
+        // reset count ot 0 so it can incremented to 1 in line 68
         count = 0;
       }
-      cursor++;
-      count++;
+      cursor++; // cursor = 1 --> cursor = 2 -> cursor = 3
+      count++; // count = 1 --> count = 0 + 1 = 1 -> 1
     }
 
-    temp += count + lastChar;
-    curr = temp;
+    //  replace the counts with a number and concatenate every saying
+    temp += count + lastChar; // '21' -> '12+11'
+    curr = temp; // '11' -> '21' -> 1211'
   }
   return curr;
 };
 
-// let countSay = function (n) {
-//   let curr = "1";
-// }
-
-// let countAndSay = function (n) {
-//   if (n === 1) return "1";
-//   else countSay(n)
-// };
+// counAndSay(4) // => '1211'
