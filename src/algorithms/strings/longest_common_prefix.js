@@ -56,5 +56,34 @@ let longestCommonPrefix = function (strs) {
     // apend matching letter to results
     longest += comparisonLtr;
   }
-  return longest; // if words have the same length and letters are all matching at the end
+  return longest; // ifC words have the same length and letters are all matching at the end
+};
+
+//72 ms submission
+let longestCommonPrefixB = function (strs) {
+  // edge cases
+  if (strs.length == 0) return "";
+  if (strs.length == 1) return strs[0];
+
+  // sort strs in ascending order (comparing value of length properties)
+  strs.sort((a, b) => a.length - b.length);
+
+  let first = strs[0];
+
+  for (let j = 0; j < strs[0].length; j++) {
+    let equal = 0;
+    // compare first str with every other following str
+    for (let i = 1; i < strs.length; i++) {
+      if (first == strs[i].slice(0, first.length)) {
+        equal++;
+      }
+    }
+
+    if (equal == strs.length - 1) {
+      return first;
+    } else {
+      first = first.slice(0, first.length - 1);
+    }
+  }
+  return "";
 };
