@@ -61,29 +61,22 @@ let longestCommonPrefix = function (strs) {
 
 //72 ms submission
 let longestCommonPrefixB = function (strs) {
-  // edge cases
-  if (strs.length == 0) return "";
-  if (strs.length == 1) return strs[0];
+  // edge
+  let prefix = "";
+  // if (strs.length == 0) return "";
+  // if (strs.length == 1) return strs[0];
+  if (!strs || !strs.length) return prefix; // two lines of code in one
 
   // sort strs in ascending order (comparing value of length properties)
-  strs.sort((a, b) => a.length - b.length);
+  // strs.sort((a, b) => a.length - b.length); // by increasing length
+  strs.sort(); // ascending order by alphabets
 
-  let first = strs[0];
-
-  for (let j = 0; j < strs[0].length; j++) {
-    let equal = 0;
-    // compare first str with every other following str
-    for (let i = 1; i < strs.length; i++) {
-      if (first == strs[i].slice(0, first.length)) {
-        equal++;
-      }
-    }
-
-    if (equal == strs.length - 1) {
-      return first;
-    } else {
-      first = first.slice(0, first.length - 1);
-    }
+  for (let i = 0; i < strs[0].length; i++) {
+    // compare charAt first str with charAt last str
+    if (strs[0][i] === strs[strs.length - 1][i]) prefix += strs[0][i];
+    else return prefix;
   }
-  return "";
+
+  return prefix;
+
 };
