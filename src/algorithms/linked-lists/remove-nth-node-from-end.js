@@ -41,7 +41,7 @@
 //  */
 
 // Approach #1: Two pass algorithm -> remove (L-n+1) node
-// 76ms
+// 76ms — Time O(2L-n); Space O(1)
 // Pass #1: find list length L; set pointer to dummy node +
 // move thru list until (L-n) node
 // Relink next of (L-n) node to (L-n+2)
@@ -69,6 +69,7 @@ let removeNthFromEnd = function (head, n) {
 };
 
 // One pass solution — 2 pointer approach
+// Time O(L); Space O(1)
 removeNthFromEndB(head, n) {
   let dummy = new ListNode(0);
   dummy.next = head;
