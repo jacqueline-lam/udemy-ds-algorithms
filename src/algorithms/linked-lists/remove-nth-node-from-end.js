@@ -69,31 +69,31 @@ let removeNthFromEnd = function (head, n) {
 };
 
 // One pass solution — 2 pointer approach
-// 1st pointer advances the list by n+1 steps from the beginning,
-// 2nd pointer starts from the beginning of the list
-
-// Now, both pointers are exactly separated by `n` nodes apart.
-// We maintain this constant gap by advancing both pointers together
-// until the first pointer arrives past the last node.
-// The second pointer will be pointing at the nnth node counting from the last.
-// We relink the next pointer of the node referenced by the second pointer
-// to point to the node's next next node.
-
 removeNthFromEndB(head, n) {
   let dummy = new ListNode(0);
   dummy.next = head;
-
+  // 1st pointer advances the list by n+1 steps from the beginning,
   let first = dummy;
+  // 2nd pointer starts from the beginning of the list
   let second = dummy;
+
+
   // Advances first pointer so that the gap between first and second is n nodes apart
   for (let i = 1; i <= n + 1; i++) {
     first = first.next;
   }
+  // Now, both pointers are exactly separated by `n` nodes apart.
+  // We maintain this constant gap by advancing both pointers together
+  // until the first pointer arrives past the last node.
   // Move first to the end, maintaining the gap
   while (first != null) {
     first = first.next;
     second = second.next;
   }
+  // The second pointer will be pointing at the nth node counting from the last.
+  // Relink next pointer of the node referenced by the second pointer
+  // to point to the node's next next node.
+  // hence remove nth node
   second.next = second.next.next;
   return dummy.next;
 }
