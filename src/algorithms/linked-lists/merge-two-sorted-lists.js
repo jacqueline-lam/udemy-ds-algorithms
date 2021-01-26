@@ -33,30 +33,35 @@
 //  * @param {ListNode} l2
 //  * @return {ListNode}
 //  */
+
+// Time: 148ms!
+// Space: 40.3MB
 let mergeTwoLists = function (l1, l2) {
   let mergedList = new ListNode();
   let head = mergedList;
 
-  while (l1 != null && l2 != null) {
+  while (l1 !== null && l2 !== null) {
     // Select smallest value from either linked list,
     // then increment that list forward
     if (l1.val < l2.val) {
       mergedList.next = new ListNode(l1.val);
       l1 = l1.next
     } else {
-      list.next = new ListNode(l2.val)
+      mergedList.next = new ListNode(l2.val)
       l2 = l2.next
     }
-    list = list.next
+    mergedList = mergedList.next
   }
 
   // one linked list may be shorter than the other so we just
   // add on the remainder of the last linked list. It's already sorted :)
-  if (l1 !== null)
-    list.next = l1
-  if (l2 !== null)
-    list.next = l2
+  // if (l1 !== null)
+  //   mergedList.next = l1
+  // if (l2 !== null)
+  //   mergedList.next = l2
+  mergedList.next = l1 || l2
 
   // return .next because this first element in the linkedlist is empty
+  // start of sorted linked list
   return head.next
 };
