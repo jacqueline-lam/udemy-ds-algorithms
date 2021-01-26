@@ -1,4 +1,5 @@
 // Given two strings s and t , write a function to determine if t is an anagram of s.
+// ANAGRAM = a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
 
 // Example 1:
 // Input: s = "anagram", t = "nagaram"

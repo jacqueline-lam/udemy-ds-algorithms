@@ -34,7 +34,7 @@
 //  * @return {ListNode}
 //  */
 
-// Time: 148ms!
+// Time: 80ms
 // Space: 40.3MB
 let mergeTwoLists = function (l1, l2) {
   let mergedList = new ListNode();
@@ -59,9 +59,11 @@ let mergeTwoLists = function (l1, l2) {
   //   mergedList.next = l1
   // if (l2 !== null)
   //   mergedList.next = l2
+  // this will also sorted out — `if(!l1) return l2` and `if (!l2) return l1`
   mergedList.next = l1 || l2
 
   // return .next because this first element in the linkedlist is empty
   // start of sorted linked list
+  // this will sort out edge cases — (!l1 && !l2)
   return head.next
 };
