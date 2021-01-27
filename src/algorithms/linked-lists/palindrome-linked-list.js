@@ -41,7 +41,7 @@ let isPalindrome = function (head) {
   return current === reverse; // '12' ≠ '21' => FALSE
 };
 
-// O(N) time and O(1) SPACe
+// O(N) time and *O(1) SPACE*
 function isPalindromeB(head) {
   let fast = head;
   let slow = head;
