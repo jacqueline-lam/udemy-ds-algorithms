@@ -55,6 +55,12 @@ let twoSum = function (nums, target) {
   // Solution 2 - 80ms - One-pass Map
   //  Map object holds key-value pairs and remembers the original insertion order of the keys.
   // Any value (both objects and primitive values) may be used as either a key or a value
+  // While we iterate & insert eles into the table,
+  // we also look back to check if current element's complement already exists in the table.
+  // If it exists, we have found a solution and return immediately.
+
+  // O(N) TIME
+  // O(N) SPACE
   let twoSumB = function (nums, target) {
     let numberIdx = new Map();
     let result = [];
