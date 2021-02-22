@@ -6,6 +6,9 @@
 // longest path from the root node down to the farthest leaf node.
 
 // Example 1:
+//    3
+// 9    20
+//    15   7
 // Input: root = [3,9,20,null,null,15,7]
 // Output: 3
 
@@ -41,5 +44,14 @@
 //  */
 
 let maxDepth = function (root) {
-
+  if (!root) return 0; //root === null
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 };
+
+
+// Math.max(maxDepth(9), maxDepth(20)) +1
+//     max( max(0,0)+1=1    max(maxDepth(15), maxDepth(17))+1) +1
+//                       (15.left,15.right) +1, (17.left,17.right) +1
+//      max(      1             max(1,1)+1            ) + 1
+//      1+2= 3
+
