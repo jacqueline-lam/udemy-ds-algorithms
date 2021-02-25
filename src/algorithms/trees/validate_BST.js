@@ -38,6 +38,12 @@
 //  * @param {TreeNode} root
 //  * @return {boolean}
 //  */
+
+// scan every single node in the tree and see if the node's value matches the BST rules,
+// that is all the values in node's left subtree are less than the value in node,
+// and all the values in node's right subtree are greater than the value in node,
+// if we found a node that doesn't satisfy the rules, simply return false from the recursion.
+
 let isValidBST = function (root) {
   // edge case - check if root is null
   // use recursion to check left and right node
