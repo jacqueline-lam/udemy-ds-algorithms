@@ -44,6 +44,7 @@
 // and all the values in node's right subtree are greater than the value in node,
 // if we found a node that doesn't satisfy the rules, simply return false from the recursion.
 
+// Solution A
 let isValidBST = function (root) {
   // edge case - check if root is null
   // if (!root) return false;
@@ -65,6 +66,7 @@ let isValidBST = function (root) {
 
 };
 
+// Solution B
 let isValidBSTB = function (root) {
   if (!root)
     return true
