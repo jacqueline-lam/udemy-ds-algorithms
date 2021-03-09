@@ -31,6 +31,7 @@
 //  * @param {TreeNode} root
 //  * @return {number[][]}
 //  */
+// Solution A
 let levelOrder = function (root) {
   if (!root) return []; // edge case
 
@@ -48,5 +49,20 @@ let levelOrder = function (root) {
     result.push(values) // [3], [9,20], [16,7]
   }
   return result;
-
 };
+
+// Solution B
+let levelOrderB = function (root) {
+  let result = [];
+  helper(root, 0, result);
+  return result;
+};
+
+let helper = function (node, level, result) {
+  if (!node) return;
+  if (!result[level]) result[level] = [];
+  result[level].push(node.val);
+  helper(node.left, level + 1, result);
+  helper(node.right, level + 1, result);
+}
+
