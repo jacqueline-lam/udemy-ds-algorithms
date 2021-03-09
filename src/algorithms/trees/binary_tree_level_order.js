@@ -38,14 +38,14 @@ let levelOrder = function (root) {
   while (arr.length) {
     const size = arr.length
     const values = [];
-
+    // Iterate thru each level
     for (let i = 0; i < size; i++) {
       const node = arr.shift();
       values.push(node.val); // [].push(3)
       if (node.left) arr.push(node.left)
       if (node.right) arr.push(node.right)
     }
-    result.push(values)
+    result.push(values) // [3], [9,20], [16,7]
   }
   return result;
 
