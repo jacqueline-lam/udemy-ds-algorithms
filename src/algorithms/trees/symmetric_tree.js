@@ -26,6 +26,17 @@
 //  * @return {boolean}
 //  */
 
+// Depth-First Search (DFS)
+// create a var to stroe values of nodes visited
+// store root of BST in var called current
+// write helper fn which accepts a node -
+//   push value of node to var that stores the values
+// if node has a left property, call help fn w / left property on node
+// if node has a right property, call help fn w / right property on node
+// invoke helper fn with the current var
+// return array of values
+
+
 let isSymmetric = function (root) {
   if (!root) return true;
   return dfs(root.left, root.right);
