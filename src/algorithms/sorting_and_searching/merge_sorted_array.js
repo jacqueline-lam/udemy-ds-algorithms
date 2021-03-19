@@ -30,6 +30,16 @@
 //  * @param {number} n
 //  * @return {void} Do not return anything, modify nums1 in-place instead.
 //  */
+
+// Hints
+// You can easily solve this problem if you simply think about two elements at a time
+// rather than two arrays. We know that each of the individual arrays is sorted.
+// What we don't know is how they will intertwine.
+// Can we take a local decision and arrive at an optimal solution?
+
+// If you simply consider one element each at a time from the two arrays
+// and make a decision and proceed accordingly, you will arrive at the optimal solution.
+
 let merge = function (nums1, m, nums2, n) {
 
 };
