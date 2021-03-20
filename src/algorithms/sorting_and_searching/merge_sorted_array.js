@@ -41,5 +41,14 @@
 // and make a decision and proceed accordingly, you will arrive at the optimal solution.
 
 let merge = function (nums1, m, nums2, n) {
-
+  let len = m + n;
+  m--;
+  n--;
+  while (len--) {
+    if (n < 0 || nums1[m] > nums2[n]) {
+      nums1[len] = nums1[m--];
+    } else {
+      nums1[len] = nums2[n--];
+    }
+  }
 };
