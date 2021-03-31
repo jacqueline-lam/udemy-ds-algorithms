@@ -26,6 +26,6 @@
 //  * @param {number} n
 //  * @return {number}
 //  */
-let climbStairs = function (n) {
+letfa climbStairs = function (n) {
 
 };
