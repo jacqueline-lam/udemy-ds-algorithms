@@ -10,7 +10,6 @@
 // 5 -> 6 -> 4
 // --------------
 // 7 -> 0 -> 8
-
 // Input: l1 = [2, 4, 3], l2 = [5, 6, 4]
 // Output: [7, 0, 8]
 // Explanation: 342 + 465 = 807.
@@ -28,6 +27,8 @@
 // 0 <= Node.val <= 9
 // It is guaranteed that the list represents a number that does not have leading zeros.
 
+
+// SOLUTION
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
