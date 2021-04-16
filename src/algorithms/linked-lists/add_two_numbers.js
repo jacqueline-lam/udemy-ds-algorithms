@@ -28,7 +28,7 @@
 // It is guaranteed that the list represents a number that does not have leading zeros.
 
 
-// SOLUTION
+// SOLUTION #1
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -57,3 +57,5 @@ let addTwoNumbers = function (l1, l2) {
   }
   return d.next;
 };
+
+// My solution:
