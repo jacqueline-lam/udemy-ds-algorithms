@@ -25,6 +25,11 @@
 //  * @param {number[]} nums
 //  * @return {number[][]}
 //  */
-var threeSum = function (nums) {
 
+// ANSWER
+let threeSum = function (nums) {
+  // edge case - not triples
+  let results = [];
+  if (nums % 3 !== 0) return results;
+  // no duplicate triplets
 };
