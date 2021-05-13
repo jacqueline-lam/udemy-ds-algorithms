@@ -41,10 +41,39 @@
 // value - x
 // where value is the input parameter. Can we change our array somehow so that this search becomes faster?
 
+// HINT #3
+// The second train of thought for two-sum is, without changing the array,
+// can we use additional space somehow? Like maybe a hash map to speed up the search?
+
 // ANSWER
 let threeSum = function (nums) {
   // edge case - not triples
   let results = [];
   if (nums % 3 !== 0) return results;
   // no duplicate triplets
+};
+
+// Leetcode answer
+var threeSumB = function (nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    let low = i + 1, high = nums.length - 1, sum = 0;
+
+    while (low < high) {
+      sum = nums[i] + nums[low] + nums[high];
+
+      if (sum === 0) {
+        result.push([nums[i], nums[low], nums[high]]);
+        while (nums[low + 1] === nums[low]) low++;
+        while (nums[high - 1] === nums[high]) high--;
+        low++;
+        high--;
+      } else if (sum < 0) low++;
+      else high--;
+    }
+    while (nums[i + 1] === nums[i]) i++;
+  }
+  return result;
 };
