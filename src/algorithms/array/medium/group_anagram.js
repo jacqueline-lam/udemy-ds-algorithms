@@ -29,5 +29,34 @@
 //  * @return {string[][]}
 //  */
 let groupAnagrams = function (strs) {
+  // create empty object `lookup`
+  const lookup = {};
 
 };
+
+// Standard Anagram
+let isAnagram = function (s, t) {
+  // return false if length doesn't match
+  if (s.length !== t.length) return false;
+  // create empty object `lookup`
+  const lookup = {};
+
+  for (let i = 0; i < s.length; i++) {
+    // current obj - a break down of `s`
+    let letter = s[i];
+    // if ltr exists, increment, otherwise, set loopup[letter]to 1
+    lookup[letter] = (lookup[letter] || 0) + 1;
+  }
+
+  // loop over second str
+  for (let i = 0; i < t.length; i++) {
+    // if can't find  or letter = 0, return false
+    let letter = t[i];
+    if (!lookup[letter]) return false;
+    // else decrement lookup[letter] <-- since ltr is found
+    else lookup[letter]--;
+  }
+  // return true if every letter matches anagram requirements
+  return true;
+
+}
