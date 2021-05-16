@@ -28,10 +28,23 @@
 //  * @param {string[]} strs
 //  * @return {string[][]}
 //  */
+
+// O(NlogK) solution
 let groupAnagrams = function (strs) {
   // create empty object `lookup`
   const lookup = {};
 
+  for (let str of strs) {
+    const key = [...str].sort().join('');
+
+    if (!lookup[key]) {
+      lookup[key] = [];
+    }
+
+    lookup[key].push(str);
+  }
+
+  return Object.values(lookup);
 };
 
 // Standard Anagram
