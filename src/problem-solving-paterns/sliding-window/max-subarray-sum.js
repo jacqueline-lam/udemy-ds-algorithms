@@ -9,7 +9,7 @@ function maxSubarraySum(array, length) {
   if (array.length < length) return null;
   for (let i = length; i < array.length; i++) {
     tempSum = tempSum - arr[i - length] + arr[i];
-    maxSum = Math.max(tempSUm, maxSum)
+    maxSum = Math.max(tempSum, maxSum)
   }
   return maxSum;
 }

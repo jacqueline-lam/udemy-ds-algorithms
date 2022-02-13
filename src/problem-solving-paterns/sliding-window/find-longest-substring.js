@@ -64,18 +64,18 @@ var lengthOfLongestSubstring = function (s) {
 };
 
 // 2 pointer solution on Leetcode - faster
-var lengthOfLongestSubstring = function (str) {
-  var length = str.length;
+function lengthOfLongestSubstring(str) {
+  let length = str.length;
   if (length <= 1) {
     return length;
   }
-  var pointer1 = 0;
-  var pointer2 = 1;
-  var result = 1;
+  let pointer1 = 0;
+  let pointer2 = 1;
+  let result = 1;
   while (pointer2 < length) {
-    var subStr = str.slice(pointer1, pointer2);
+    let subStr = str.slice(pointer1, pointer2);
     // i = idx where you last found the current char
-    var i = subStr.indexOf(str[pointer2]);
+    let i = subStr.indexOf(str[pointer2]);
     if (i !== -1) {
       // char exists in subStr - move window to Right
       pointer1 = pointer1 + i + 1;
