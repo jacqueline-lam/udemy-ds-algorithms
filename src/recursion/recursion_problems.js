@@ -123,12 +123,41 @@ function flatten(arr) {
 
 // -------- QUESTION 5 -------------
 // Given array of strings, capitalize 1st ltr of each str
-function capitalizeFirst(array) {
-  if (array.length === 1) {
-    return [array[0][0].toUpperCase() + array[0].substr(1)];
+
+// SLOW SOLUTION - O(N)
+function capitalizeFirst(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let firstLtr = arr[i][0].toUpperCase();
+    newArr.push(firstLtr + arr[i].slice(1));
   }
-  const res = capitalizeFirst(array.slice(0, -1));
-  const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length - 1)[0].substr(1);
-  res.push(string);
+  return newArr;
+}
+
+// FASTER SOLUTION - O(1)
+// Space is at least O(N) -> result getting longer - directly in proportion to length of input
+function capitalizeFirst(array) {
+  // base case - first str
+  if (array.length === 1) {
+    return [array[0][0].toUpperCase() + array[0].substring(1)];
+  }
+  // slice(0,-1) returns whole arr with last ele removed
+  const result = capitalizeFirst(array.slice(0, -1));
+  // last word in array with first ltr capitalized
+  const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length - 1)[0].substring(1);
+  result.push(string);
+  return result;
+}
+
+// -------- QUESTION 6 -------------
+// Given array of strings, capitalize ALL ltrs of each str
+function capitalizeAllWords(array) {
+  if (array.length === 1) {
+    return [array[0].toUpperCase()];
+  }
+  let res = capitalizeAllWords(array.slice(0, -1));
+  // take last str and change entire str to uppercase
+  res.push(array.slice(array.length - 1)[0].toUpperCase());
   return res;
 }
+
