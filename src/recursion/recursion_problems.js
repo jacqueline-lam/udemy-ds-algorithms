@@ -141,9 +141,9 @@ function capitalizeFirst(array) {
   if (array.length === 1) {
     return [array[0][0].toUpperCase() + array[0].substring(1)];
   }
-  // slice(0,-1) returns whole arr with last ele removed
+  // Slice(0,-1) returns whole arr with last ele removed
   const result = capitalizeFirst(array.slice(0, -1));
-  // last word in array with first ltr capitalized
+  // Last word in array with first ltr capitalized
   const string = array.slice(array.length - 1)[0][0].toUpperCase() + array.slice(array.length - 1)[0].substring(1);
   result.push(string);
   return result;
@@ -155,9 +155,40 @@ function capitalizeAllWords(array) {
   if (array.length === 1) {
     return [array[0].toUpperCase()];
   }
-  let res = capitalizeAllWords(array.slice(0, -1));
+  let result = capitalizeAllWords(array.slice(0, -1));
   // take last str and change entire str to uppercase
-  res.push(array.slice(array.length - 1)[0].toUpperCase());
-  return res;
+  result.push(array.slice(array.length - 1)[0].toUpperCase());
+  return result;
+}
+// Examples
+// let words = ['i', 'am', 'learning', 'recursion'];
+// capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
+// -------- QUESTION 7 -------------
+// Return sum of all even nums in an obj which may contain nested objects.
+function nestedEvenSum(obj) {
+  obj
+
 }
 
+// Examples
+// let obj1 = {
+//   outer: 2,
+//   obj: {
+//     inner: 2,
+//     otherObj: {
+//       superInner: 2,
+//       notANumber: true,
+//       alsoNotANumber: "yup"
+//     }
+//   }
+// }
+// let obj2 =
+//   a: 2,
+//     b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
+// c: { c: { c: 2 }, cc: 'ball', ccc: 5 },
+// d: 1,
+//   e: { e: { e: 2 }, ee: 'car' }
+// };
+// nestedEvenSum(obj1); // 6
+// nestedEvenSum(obj2); //n0
