@@ -223,3 +223,59 @@ function nestedEvenSum(obj, sum = 0) {
   return sum;
 }
 
+// -------- QUESTION 7 -------------
+// takes an obj and find all values which are numbers and converts them to strs
+// fn should not modify existing obj
+function stringifyNumbers(obj) {
+  let newObj = {};
+  for (let key in obj) {
+    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key])
+    } else if (typeof obj[key] === 'number') {
+      let newValue = obj[key].toString();
+      newObj[key] = newValue;
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+// Refactored - use Object.assign to avoid last else statement
+function stringifyNumbers(obj) {
+  let newObj = Object.assign({}, obj);
+  for (let key in obj) {
+    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      newObj[key] = stringifyNumbers(obj[key])
+    } else if (typeof obj[key] === 'number') {
+      let newValue = obj[key].toString();
+      newObj[key] = newValue;
+    }
+  }
+  return newObj;
+}
+
+// Example
+// let obj = {
+//     num: 1,
+//     test: [],
+//     data: {
+//         val: 4,
+//         info: {
+//             isRight: true,
+//             random: 66
+//         }
+//     }
+// }
+// stringifyNumbers(obj);
+// RESULT:
+// {
+//   num: "1",
+//   test: [],
+//   data: {
+//       val: "4",
+//       info: {
+//           isRight: true,
+//           random: "66"
+//       }
+//   }
+// }
