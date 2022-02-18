@@ -166,11 +166,17 @@ function capitalizeAllWords(array) {
 
 // -------- QUESTION 7 -------------
 // Return sum of all even nums in an obj which may contain nested objects.
-function nestedEvenSum(obj) {
-  obj
-
+function nestedEvenSum(obj, sum = 0) {
+  let values = Object.values(obj) //O(N)
+  values.forEach(value => {
+    if (typeof value === "object") {
+      sum += nestedEvenSum(value);
+    } else if (typeof value === "number" && value % 2 === 0) {
+      sum += value;
+    }
+  })
+  return sum;
 }
-
 // Examples
 // let obj1 = {
 //   outer: 2,
@@ -191,4 +197,29 @@ function nestedEvenSum(obj) {
 //   e: { e: { e: 2 }, ee: 'car' }
 // };
 // nestedEvenSum(obj1); // 6
+// (return 2 + 4 = 6)
+// values = [2, {inner: 2, otherObj: {superInner: 2, notANumber: true, alsoNotANumber: "yup"}}]
+// i=0 -> sum = 0 + 2
+// i=1 -> 2+ nestedEvenSum({inner: 2, otherObj: {superInner: 2, notANumber: true, alsoNotANumber: "yup"}})
+// (return 4)
+// values = [2, {superInner: 2, notANumber: true, alsoNotANumber: "yup"}}]
+// i=0 -> sum = 0 +2 = 2
+// i=1 -> nestedEvenSum({superInner: 2, notANumber: true, alsoNotANumber: "yup"}})
+// values = [2, true, 'yes']
+// i=0 -> sum = 0 + 2
+// Return 2
+
 // nestedEvenSum(obj2); //n0
+
+// REFACTORED
+function nestedEvenSum(obj, sum = 0) {
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      sum += nestedEvenSum(obj[key]);
+    } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+      sum += obj[key];
+    }
+  }
+  return sum;
+}
+
