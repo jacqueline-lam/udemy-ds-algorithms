@@ -223,7 +223,7 @@ function nestedEvenSum(obj, sum = 0) {
   return sum;
 }
 
-// -------- QUESTION 7 -------------
+// -------- QUESTION 8 -------------
 // takes an obj and find all values which are numbers and converts them to strs
 // fn should not modify existing obj
 function stringifyNumbers(obj) {
@@ -244,6 +244,7 @@ function stringifyNumbers(obj) {
 function stringifyNumbers(obj) {
   let newObj = Object.assign({}, obj);
   for (let key in obj) {
+    // array is also typeof 'object' -> ensure value != []
     if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
       newObj[key] = stringifyNumbers(obj[key])
     } else if (typeof obj[key] === 'number') {
@@ -279,3 +280,5 @@ function stringifyNumbers(obj) {
 //       }
 //   }
 // }
+
+// -------- QUESTION 9 -------------
