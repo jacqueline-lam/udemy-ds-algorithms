@@ -282,3 +282,54 @@ function stringifyNumbers(obj) {
 // }
 
 // -------- QUESTION 9 -------------
+// Fn accepts an obj and return an arr of all the values of the object that have a typeof str
+// Pure Recursion Version
+function collectStrings(obj) {
+  let stringArr = [];
+  for (let key in obj) {
+    let value = obj[key];
+    if (typeof value === 'string') {
+      stringArr.push(value);
+    } else if (typeof value === 'object') {
+      stringArr = stringArr.concat(collectStrings(value));
+    }
+  }
+  return stringArr;
+}
+
+// Helper Method Recursion Version
+function collectStringsB(obj) {
+  let stringArr = [];
+
+  function gatherStrings(specificObj) {
+    for (let key in specificObj) {
+      let value = specificObj[key]
+      if (typeof value === 'string') {
+        stringArr.push(value);
+      } else if (typeof value === 'object') {
+        return gatherStrings(value);
+      }
+    }
+  }
+  gatherStrings(obj);
+  return stringArr;
+}
+
+  // Example:
+  // const obj = {
+  //   stuff: "foo",
+  //   data: {
+  //     val: {
+  //       thing: {
+  //         info: "bar",
+  //         moreInfo: {
+  //           evenMoreInfo: {
+  //             weMadeIt: "baz"
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  // collectStrings(obj) // ["foo", "bar", "baz"])
