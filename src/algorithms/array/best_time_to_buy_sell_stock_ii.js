@@ -35,13 +35,13 @@
 // PROFIT is the SUM OF SUB-PROFITS (earnings - cost)
 // Each sub-profit = the diff between selling at day j, and buying at day i (with j > i)
 
-
 // SOLUTION
 let maxProfit = function (prices) {
   let profit = 0;
   for (let i = 0; i < prices.length - 1; i++) {
     let j = i + 1;
     if (prices[j] > prices[i]) {
+      // Sum up sub-profits
       profit = profit + prices[j] - prices[i];
     }
   }
