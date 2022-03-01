@@ -1,7 +1,7 @@
 // Given an array of integers `nums` and an integer `target`,
 // return indices of the two numbers such that they add up to target.
 
-// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You may assume that each input would have EXACTLY ONE SOLUTION, and you may NOT USE SAME ELEMENT TWICE.
 // You can return the answer in any order.
 
 // Example 1:
@@ -95,3 +95,47 @@ twoSum([3, 2, 4], 6) // [1,2]
 // 3 2 4 -> {2:1, 3:0, 4:2}
 twoSum([3, 3], 6) // [0,1]
 // {3:1} // value will equal idx of last 3 in array
+
+
+// PROBLEM SOLVING PROCESS
+
+// 1) Understand Problem
+//  twoSum fn takes arr of nums and an int target - return indices of two nums with sum = target
+// input: nums will be unique , only one pair will add up to target (ONLY 1 VALID ANSWER)
+// output: [idx1, idx2] with sum = target
+// determined by - looping thru nums to store num,idx as k,v in obj
+// look up to see target-num exists in obj
+// edge case: aware - same num can be used twice
+
+//89ms - O(N)
+function twoSumPractice(nums, target) {
+  // populate obj with num,idx pairs
+  let numObj = {};
+  for (let i = 0; i < nums.length; i++) {
+    numObj[nums[i]] = i;
+  }
+  // check if target is key in obj
+  for (let j = 0; j < nums.length; j++) {
+    let complement = target - nums[j];
+    // make sure complement !=== current num
+    // numObj.hasOwnProperty(complement) - will avoid error
+    if (numObj[complement] && numObj[complement] !== j) {
+      return [j, numObj[complement]];
+    }
+  }
+}
+
+// refactor - perhaps one pass hash - lookup for complement
+function twoSumPracticeRefactor(nums, target) {
+  let numObj = {};
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i];
+    // make sure complement !=== current num
+    // if (numObj[complement]) { // this causes error beacuase 2:0 (0 idx boolean = Falsey)
+    // check if key exists in array instead
+    if (complement in numObj) {
+      return [numObj[complement], i];
+    }
+    numObj[nums[i]] = i;
+  }
+}
