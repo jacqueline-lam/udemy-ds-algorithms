@@ -2,18 +2,15 @@
 // Anagram = word, phrase, name formed by rearranging the letter of another (e.g. cinema <- iceman)
 
 function validAnagram(first, second) {
-  if (first.length !== second.length) {
-    return false;
-  }
-
+  if (first.length !== second.length) false;
   const lookup = {};
 
   for (let i = 0; i < first.length; i++) {
     let letter = first[i];
     // if letter exists, increment, otherwise set to 1
+    // lookup[letter] = (lookup[letter] || 0) + 1;
     lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
   }
-  console.log(lookup)
 
   for (let i = 0; i < second.length; i++) {
     let letter = second[i];
@@ -24,7 +21,7 @@ function validAnagram(first, second) {
       lookup[letter] -= 1;
     }
   }
-
+  // every letter matches anagram requirements
   return true;
 }
 
