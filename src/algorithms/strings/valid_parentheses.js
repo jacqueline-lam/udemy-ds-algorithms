@@ -73,3 +73,72 @@ function isValidParatheses(brackets) {
 }
 // WRONG ANSWER - "([)]" should reuturn false not true
 
+// STACK SOLUTION ON DISCUSSION PAGE - REVIEW LATER
+var isValid = function (s) {
+  let mapLeft = {
+    '{': 1,
+    '[': 2,
+    '(': 3
+  },
+    mapRight = {
+      '}': 1,
+      ']': 2,
+      ')': 3
+    };
+  let stack = [];
+  for (let i = 0; i < s.length; ++i) {
+    if (mapLeft[s[i]]) {
+      stack.push(s[i])
+    } else if (!stack.length || mapRight[s[i]] != mapLeft[stack.pop()])
+      return false;
+  }
+  return stack.length ? false : true;
+};
+
+// STACK #2**
+var isValid = function (s) {
+  let map = {
+    ")": "(",
+    "]": "[",
+    "}": "{"
+  }
+  let arr = [];
+  for (let i = 0; i < s.length; i++) {
+    let bracket = s[i]
+    if (bracket === "(" || bracket === "[" || bracket === "{") {
+      arr.push(bracket);
+    }
+    else {
+      if (arr[arr.length - 1] === map[bracket]) {
+        arr.pop();
+      }
+      else return false;
+    }
+  }
+  return arr.length === 0 ? true : false;
+};
+
+// STACK #3
+var map = {
+  "(": ")",
+  "[": "]",
+  "{": "}"
+}
+
+var isValid = function (s) {
+  var stack = [];
+
+  for (var i = 0; i < s.length; i++) {
+    var ele = s[i];
+
+    if (map[ele]) {
+      stack.push(map[ele]);
+    } else {
+      if (ele !== stack.pop()) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
