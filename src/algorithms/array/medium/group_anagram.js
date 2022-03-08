@@ -1,9 +1,10 @@
-// Group Anagrams
+// 49. Group Anagrams
 
 // Given an array of strings strs, group the anagrams together.
 //You can return the answer in any order.
 
-// An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+// An Anagram is a word or phrase formed by
+// rearranging the letters of a different word or phrase,
 // typically using all the original letters exactly once.
 
 
@@ -35,19 +36,25 @@ let groupAnagrams = function (strs) {
   const lookup = {};
 
   for (let str of strs) {
+    // [...str] turns str into array e.g. ['e','a',t']
+    // [...str].sort() will return arr of individual ele - e.g. ['a','e','t']
     const key = [...str].sort().join('');
 
+    // Set up key if it DOE yet
     if (!lookup[key]) {
       lookup[key] = [];
     }
 
+    // Add value to the just defined or existing key
     lookup[key].push(str);
   }
 
+  // only return array of values in lookup (the anagram groups)
+  // Object.values() has O(N) runtime
   return Object.values(lookup);
 };
 
-// Standard Anagram
+// Standard Anagram accepting two strings
 let isAnagram = function (s, t) {
   // return false if length doesn't match
   if (s.length !== t.length) return false;
