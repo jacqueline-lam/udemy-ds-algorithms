@@ -1,9 +1,23 @@
-// Reverse Linked List
+// 206. Reverse Linked List
 
 // Reverse a singly linked list.
-// Example:
+// Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+// Example #1:
 // Input: 1 -> 2 -> 3 -> 4 -> 5 -> NULL
 // Output: 5 -> 4 -> 3 -> 2 -> 1 -> NULL
+
+// Example #2:
+// Input: head = [1,2]
+// Output: [2,1]
+
+// Example #3:
+// Input: head = []
+// Output: []
+
+// Constraints:
+// The number of nodes in the list is the range [0, 5000].
+// -5000 <= Node.val <= 5000
 
 // Follow up:
 // A linked list can be reversed either iteratively or recursively.
@@ -21,10 +35,13 @@
 //  * @return {ListNode}
 
 
-let reverseList = function (head) {
+// Reversed Iteratively
+// Runtime: 91 ms, faster than 53.44%
+// Memory Usage: 44.6 MB, less than 17.65%
+let reverseList = function (head) {  // e.g. [1,2,3,4,5]
   // Initialize 3 pointes `prev`, `curr`, & `next`
   let prev = null;
-  let current = head;
+  let current = head; // [1,2,3,4,5]
   let next;
 
   while (current) {
@@ -34,13 +51,12 @@ let reverseList = function (head) {
     // Change next of current (REVERSING)
     current.next = prev;
     // move prev and curr one step forward
-    prev = current;
+    prev = current; // [1,2,3,4,5]
     current = next;
   }
   return prev;
 };
 
-// Iteratively
 reverseList([100, 201, 250, 350, 999])
 //       100   201   250   350   999
 // prev  curr next                    -> 100.next = prev; prev = current = 100; current = next = 201; => [100, null]
@@ -56,7 +72,9 @@ reverseList([100, 201, 250, 350, 999])
 //                               prev  curr   -> return prev
 
 
-// Recursively
+// Iterate Recursively
+// Runtime: 64 ms, faster than 94.94%
+// Memory Usage: 44.8 MB, less than 7.74%
 let reverseListRecursively = function (head) {
   const reverse = (currNode, prevNode = null) => {
     // return first node after everything is reversed

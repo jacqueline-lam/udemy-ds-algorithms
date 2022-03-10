@@ -31,6 +31,9 @@
 //  */
 
 // O(NlogK) solution
+// Runtime: 190 ms, faster than 57.84% of JavaScript
+// Memory Usage: 55.2 MB, less than 15.23% of JavaScript
+
 let groupAnagrams = function (strs) {
   // create empty object `lookup`
   const lookup = {};
@@ -53,6 +56,35 @@ let groupAnagrams = function (strs) {
   // Object.values() has O(N) runtime
   return Object.values(lookup);
 };
+
+// Faster solution
+// Runtime: 88 ms, faster than 100.00%
+// Memory Usage: 50 MB, less than 89.20%
+// Manual hash
+let groupAnagramsFastB = function (strs) {
+  if (strs.length == 0) return [];
+  const result = new Map();
+  const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 107];
+  // O(N) runtime because the the key of str will be caluculated without sorting
+  // (key derived from multiplication will be same for each anagram)
+  const _hash = str => {
+    let total = 1;
+    for (let i = 0; i < str.length; i++) {
+      total = primes[s  tr.charCodeAt(i) - 97] * total;
+    }
+    return total;
+  }
+  strs.forEach(s => {
+    let key = _hash(s);
+    if (result.has(key)) {
+      result.get(key).push(s);
+    } else {
+      result.set(key, [s]);
+    }
+
+  });
+  return [...result.values()];
+}
 
 // Standard Anagram accepting two strings
 let isAnagram = function (s, t) {
