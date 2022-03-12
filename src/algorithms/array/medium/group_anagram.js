@@ -70,7 +70,7 @@ let groupAnagramsFastB = function (strs) {
   const _hash = str => {
     let total = 1;
     for (let i = 0; i < str.length; i++) {
-      total = primes[s  tr.charCodeAt(i) - 97] * total;
+      total = primes[str.charCodeAt(i) - 97] * total;
     }
     return total;
   }
