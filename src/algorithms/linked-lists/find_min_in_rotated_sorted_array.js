@@ -93,6 +93,8 @@ l      m       r
 // Space: O(1)
 // Memory Usage: 41.8 MB, less than 65.76% of JavaScript
 
+// Quick concept: if mid > r, min is in r side -> l = m +1 : r = m (min is in l side)
+
 let findMin = function (nums) {
   // Pointers that keep track of the start and end of the subarray that we're currently searching
   let left = 0;
@@ -110,6 +112,8 @@ let findMin = function (nums) {
 }
 
 //findMin([7,0,1,2,3,4,5,6])
+// mid = i3 = 2
+//...
 // mid = i2 = 1
 // mid(1) > nums[right](6) ? -> False -> right = i2 -> [7,0,1]
 // mid= i1= (0) > nums[right](1) ? -> False -> right = i1 -> [7,0]
