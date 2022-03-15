@@ -1,12 +1,14 @@
-// Remove Nth Node From End of List
+// 19. Remove Nth Node From End of List
 
 // Given the head of a linked list,
-// remove the nth node from the end of the list
+// remove the nth node from the END of the list
 // and return its head.
+
 // Follow up: Could you do this in one pass?
 
 // Example 1:
 // Input: head = [1,2,3,4,5], n = 2
+// Remove 2nd node from end -> 4
 // Output: [1,2,3,5]
 
 // Example 2:
@@ -39,6 +41,50 @@
 //  * @param {number} n
 //  * @return {ListNode}
 //  */
+
+// Runtime: O(N) - 50 ms
+// Memory Usage: O(1) - 42.6 MB
+let removeNthFromEndA = function (head, n) {
+  let newNode = new ListNode(null);
+  newNode.next = head;
+
+  // one pointer is n ahead of the other
+  let p1 = newNode;
+  let p2 = newNode;
+
+  // Move p2 to be n ahead of p1
+  for (let i = 0; i < n + 1; i++) {
+    p2 = p2.next;
+    // console.log('p2=', p2)
+  }
+  // // If p2 doesn't exist, that means we must remove the head of the list
+  // if (!p2) return newNode.next;
+
+  // Move both pointers until p2 reaches the end
+  while (p2.next !== null) {
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+  // Save the node two places ahead of p1;
+  // console.log('p1= ', p1, ' p2= ', p2)
+  p1.next = p1.next.next;
+  return newNode.next;
+}
+
+//removeNthFromEndA([1,2,3,4,5])
+// p2 = 1
+// p1 = 2
+// p1 = 3 p2 =5
+// p1.next = 5
+// [1,2,3,5]
+
+//removeNthFromEndA([1,2,3])
+// p2= 1
+// p2= 2
+// p2= 3
+// p1 = null, p2 =  3
+// p1.next (head) = 2
+// [2,3]
 
 // Approach #1: Two pass algorithm -> remove (L-n+1) node
 // 76ms — Time O(2L-n); Space O(1)
