@@ -89,6 +89,10 @@ l      m       r
 
 // SOLUTION
 // Time: O(logn), at every stage of binary search, we're splitting the array into half
+// Runtime: 76 ms, faster than 67.00% of JavaScript
+// Space: O(1)
+// Memory Usage: 41.8 MB, less than 65.76% of JavaScript
+
 let findMin = function (nums) {
   // Pointers that keep track of the start and end of the subarray that we're currently searching
   let left = 0;
