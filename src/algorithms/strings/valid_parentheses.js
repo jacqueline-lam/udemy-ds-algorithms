@@ -96,6 +96,8 @@ var isValid = function (s) {
 };
 
 // STACK #2**
+// Runtime: 63 ms
+// Memory Usage: 41.9 MB
 var isValid = function (s) {
   let map = {
     ")": "(",
@@ -119,6 +121,9 @@ var isValid = function (s) {
 };
 
 // STACK #3
+// BEST SOLUTION - CLEAR AND EASY TO UNDERSTAND
+// STACK = LIFO, append to end, remove last ele
+// O(N) TIME - loop thru str once and perform constant op on each char
 var map = {
   "(": ")",
   "[": "]",
@@ -132,13 +137,16 @@ var isValid = function (s) {
     var ele = s[i];
 
     if (map[ele]) {
+      // if opening bracket ,push closing bracket to stack (end)
       stack.push(map[ele]);
     } else {
+      // if closing bracket, remove ele from end and check if removed ele = curr ele
       if (ele !== stack.pop()) {
         return false;
       }
     }
   }
-
+  // If it's valid, the stack would be empty
+  // Anything over zero means that there are leftovers
   return stack.length === 0;
 };
