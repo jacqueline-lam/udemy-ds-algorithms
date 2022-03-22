@@ -42,24 +42,16 @@ DFS = going to end of tree and then coming back up
 */
 
 // Brute Force - O(N^2) Solution
+// Runtime: 125 ms, faster than 49.00% of JavaScript
+// Memory Usage: 45.5 MB, less than 51.34% of JavaScript
+
 // visit every ele on the grid
 // if ele i'm on right now is '1' - record, increment island count
 // start teraforming things on left, right, top, bottom as I know i'm on land
 // all those eles considered i'm on land will be converted to water
 // so when I run next loop, if I find a 1, that 1 is not part of previous island
-let numIsialnds = function (grid) {
+let numIslands = function (grid) {
   let count = 0;
-
-  // go through every element in this grid - hint in "vertically & horizontally"
-  for (let rowIdx in grid) {
-    for (let colIdx in grid[rowIdx]) {
-      // check if island exists
-      if (grid[rowIdx][colIdx] === '1') {
-        count++;
-        teraform(parseInt(rowIdx), parseInt(colIdx), grid)
-      }
-    }
-  }
 
   // convert stuff around us to water
   const teraform = (rowI, colI, grid) => {
@@ -70,6 +62,17 @@ let numIsialnds = function (grid) {
     teraform(rowI - 1, colI, grid) // check bottom
     teraform(rowI, colI + 1, grid) // right
     teraform(rowI, colI - 1, grid) // left
+  }
+
+  // go through every element in this grid - hint in "vertically & horizontally"
+  for (let rowIdx in grid) {
+    for (let colIdx in grid[rowIdx]) {
+      // check if island exists
+      if (grid[rowIdx][colIdx] === '1') {
+        count++;
+        teraform(parseInt(rowIdx), parseInt(colIdx), grid)
+      }
+    }
   }
 
   return count;
