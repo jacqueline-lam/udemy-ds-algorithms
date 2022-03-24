@@ -83,12 +83,15 @@ let isValidBST = function (root, min = null, max = null) {
   if (!root) return true;
   if (min && root.val <= min.val) return false;
   if (max && root.val >= max.val) return false;
+  // V. IMPORTANT LOGIC BELOW:
   return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
 };
 
 // [2,1,3]
+//  2
+// 1  3
 // isValid (2, null, null)
-// isValidBST(1,null,2) && isValidBST(3, 2, null)
+// isValidBST(1,min=null,max=2) && isValidBST(3, min=2, max=null)
 // min=null so skip
 // max=2, root=1 not > max=2 so continue;
 // --
