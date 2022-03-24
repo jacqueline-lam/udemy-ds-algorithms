@@ -51,6 +51,8 @@ or...Traverse and store nodes in data, compare data with root at the end?
  * @return {boolean}
  */
 
+// RUNTIME: O(N) by iterating over BST once, space may vary
+
 // Pre-order DFS
 // Runtime: 76 ms, faster than 83.65% of JavaScript
 // Memory Usage: 46.4 MB, less than 49.56% of JavaScript
@@ -59,7 +61,6 @@ or...Traverse and store nodes in data, compare data with root at the end?
 // and all the values in node's right subtree are greater than the value in node,
 // if we found a node that doesn't satisfy the rules,
 // simply return false from the recursion.
-
 let isValidBST = function (root) {
   function helper(root, min, max) {
     // We've reached end of path
