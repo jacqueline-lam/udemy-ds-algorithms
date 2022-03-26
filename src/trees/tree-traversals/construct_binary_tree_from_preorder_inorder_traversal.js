@@ -140,20 +140,22 @@ var buildTree = function (preorder, inorder) {
   let inOrderIndexLookup = new Map();
 
   //since inorder does not contain duplicates, we will have one entry for each node;
+  // Hash - accessing idx will only cost O(1) - instead of O(N) with indexOf()
   for (let i = 0, len = inorder.length; i < len; i++) {
+    // {nodeVal: index in order arr}
     inOrderIndexLookup.set(inorder[i], i);
   }
 
-  function helper(preStart, preEnd, inStart, inEnd) {
-    if (preStart > preEnd || inStart > inEnd) return null;
+  function helper(pre1, pre2, in1, in2) {
+    if (pre1 > pre2 || in1 > in2) return null;
 
-    let value = preorder[preStart];
+    let value = preorder[pre1];
     let index = inOrderIndexLookup.get(value);
-    let leftTreeNodeCount = index - inStart;
+    let leftTreeNodeCount = index - in1;
     let root = new TreeNode(value);
 
-    root.left = helper(preStart + 1, preStart + leftTreeNodeCount, inStart, index - 1);
-    root.right = helper(preStart + leftTreeNodeCount + 1, preEnd, index + 1, inEnd);
+    root.left = helper(pre1 + 1, pre1 + leftTreeNodeCount, in1, index - 1);
+    root.right = helper(pre1 + leftTreeNodeCount + 1, pre2, index + 1, in2);
     return root;
   }
 
