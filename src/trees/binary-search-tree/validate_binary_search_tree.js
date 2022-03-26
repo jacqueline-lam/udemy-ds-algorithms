@@ -113,6 +113,7 @@ let isValidBST = function (root) {
 
   const sortedArr = inOrder(root);
 
+  // make sure this is binary search tree by making sure L < R
   for (let i = 0; i < sortedArr.length; i++) {
     if (sortedArr[i + 1] <= sortedArr[i]) return false;
   }
