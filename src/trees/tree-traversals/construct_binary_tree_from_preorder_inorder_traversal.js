@@ -85,7 +85,7 @@ class TreeNode {
 }
 
 
-// Time: O(N) as each noce is visited once
+// Time: O(N) as each node is visited once
 // Runtime: 88 ms, faster than 87.80% of JavaScript
 // Memory Usage: 44.8 MB, less than 86.70% of JavaScript
 let buildTree = function (preorder, inorder) {
@@ -161,3 +161,62 @@ var buildTree = function (preorder, inorder) {
 
   return helper(0, preorder.length - 1, 0, inorder.length - 1);
 };
+
+
+// Solution 3
+var buildTree = function (preorder, inorder) {
+  p = i = 0
+  build = function (stop) {
+    if (inorder[i] != stop) {
+      var root = new TreeNode(preorder[p++])
+      root.left = build(root.val)
+      i++
+      root.right = build(stop)
+      return root
+    }
+    return null
+  }
+  return build()
+};
+// The top-most call doesn't explicitly get a stopper value,
+// so its stop is undefined. Which is good, because that's also what inorder[i] is when we have
+// consumed all values, i.e., when i is inorder.length.
+
+/*
+Explanation/Discussion:
+
+Consider this input:
+preorder: [1, 2, 4, 5, 3, 6]
+inorder: [4, 2, 5, 1, 6, 3]
+The obvious way to build the tree is:
+1. Use the first element of preorder, the 1, as root.
+2. Search it in inorder.
+3. Split inorder by it, here into [4, 2, 5] and [6, 3].
+4. Split the rest of preorder into two parts as large as the inorder parts,
+ here into [2, 4, 5] and [3, 6].
+5. Use preorder = [2, 4, 5] and inorder = [4, 2, 5] to add the left subtree.
+6. Use preorder =[3, 6] and inorder = [6, 3] to add the right subtree.
+
+But consider the WORST CASE for this:
+A tree that's not balanced but is just a straight line to the left.
+Then inorder is the reverse of preorder, and already the cost of step 2,
+searching in inorder, is O(n^2) overall.
+Also, depending on how you "split" the arrays,
+you're looking at O(n^2) runtime and possibly O(n^2) space for that as well.
+
+You can bring the runtime for searching down to O(n) by building
+ a MAP from value to index before you start the main work,
+ and I've seen several solutions do that.
+ But that is O(n) additional space, and also the splitting problems remain.
+ To fix those, you can use pointers into preorder and inorder instead of
+ splitting them. And when you're doing that, you don't need the value-to-index map, either.
+
+Consider the example again. Instead of finding the 1 in inorder,
+splitting the arrays into parts and recursing on them,
+just recurse on the full remaining arrays and stop when you come across the 1 in inorder.
+That's what my above solution does. Each recursive call gets told where to stop,
+and it tells its subcalls where to stop.
+It gives its own root value as stopper to its left subcall
+and its parent`s stopper as stopper to its right subcall.
+
+ */
