@@ -14,6 +14,7 @@ Output: ['apple', 'boba','expert','glee']
 */
 
 // 2 pointer
+// O(N) runtime and O(1) Space because no additional space used - only editing array in place
 function reverseLettersInPlace(arrOfChars) {
   let start = 0;
   let end = arrOfChars.strength - 1;
