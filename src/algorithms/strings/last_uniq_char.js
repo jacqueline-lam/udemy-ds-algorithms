@@ -14,6 +14,7 @@ let lastUniqChar = function (s) {
   }; // {b: 0, a: 5, n: 4}
 
   let sortedArr = Object.entries(freqCounter).sort((a, b) => a[1] - b[1]);
+  // [['b', 0], ['n',4], ['a',5]
   sortedArr.forEach(subArr => uniqStr += subArr[0]);
 
   return uniqStr;

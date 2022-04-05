@@ -33,6 +33,45 @@
 //   // CAN'T GET BACK TO PARENT OF LARGEST SO MUST FIND LAGEST IN THIS FN
 // }
 
+// First attempt at answer — O(height of tree) time and O(h) space
+// That h space in the call stack is avoidable.
+// That's Why we didn't use recursion to find largest ele
+function findLargest(rootNode) {
+  if (!rootNode) {
+    throw new Error('Tree must have at least 1 node');
+  }
+  if (rootNode.right) {
+    return findLargest(rootNode.right);
+  }
+  return rootNode.value;
+}
+
+function findSecondLargest(rootNode) {
+  if (!rootNode || (!rootNode.left && !rootNode.right)) {
+    throw new Error('Tree must have at least 2 nodes');
+  }
+
+  // Case: we're currently at largest, and largest has a left subtree,
+  // so 2nd largest is largest in said subtree
+  if (rootNode.left && !rootNode.right) {
+    return findLargest(rootNode.left);
+  }
+
+  // Case: we're at parent of largest, and largest has no left subtree,
+  // so 2nd largest must be current node
+  if (
+    rootNode.right
+    && !rootNode.right.left
+    && !rootNode.right.right
+  ) {
+    return rootNode.value;
+  }
+
+  // Otherwise: step right
+  // O(h) space in the call stack is avoidable. How can we get this down to constant space?
+  return findSecondLargest(rootNode.right);
+}
+
 // Strategy:
 // 1. Find first largest ele
 // 2. Find 2nd largest by diviidning into 2 cases:
@@ -82,3 +121,4 @@ function findSecondLargest(root) {
   // then right child is largest ele and Current ele is 2nd largest
 // ELSE we have R subtree w/ > 1 ele, largest and second largest are somewhere in that subtree
   // Step right
+
