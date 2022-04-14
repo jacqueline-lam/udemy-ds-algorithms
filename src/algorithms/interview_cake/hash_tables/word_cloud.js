@@ -36,10 +36,10 @@ function wordCloud(str) {
     // replace them all w/ empty string as we indicate with the 2nd argument
     .replace(punctuationRegex, "")
     .split(" ");
-  console.log(splitStr)
+  // console.log(splitStr)
 
   for (let i = 0; i < splitStr.length; i++) {
-    let word = splitStr[i].toLowerCase()
+    let word = splitStr[i].toLowerCase();
     cloudMap[word] = (cloudMap[word] || 0) + 1;
   }
   return cloudMap;
@@ -64,3 +64,12 @@ sugar: 1
 the: 2
 then: 1
  */
+
+/*
+Complexity
+Runtime and memory cost are both O(n).
+This is the best we can do because we have to look at every character in the input string
+ and we have to return a map of every unique word.
+ We optimized to only make one pass over our input and
+ have only one O(n) data structure.
+*/
