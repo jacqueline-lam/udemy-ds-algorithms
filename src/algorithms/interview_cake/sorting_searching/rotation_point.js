@@ -71,7 +71,12 @@ Else it's to our right.**
 //  and ceiling is the first item we've added after
 
 // words = ['k', 'v', 'a', 'b', 'c', 'd', 'e', 'g', 'i'] // length = 9, ceilingIdx = 8
-//         floorIdx             mid                ceilingIdx
+//         floorIdx(0)         mid(4)              ceilingIdx(8)
+//          c < k — ceiling = mid = 4
+//          a < k - ceiling = mid = 2
+//          v > k - floor = mid = 1, ceiling still = 2
+//          floor(1)+ 1 = 2 = ceiling(2) -> break as we've flipped to beginning at ceiling
+
 function findRotationPoint(words) {
   const firstWord = words[0];
 
