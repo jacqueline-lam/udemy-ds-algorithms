@@ -78,10 +78,11 @@ the result of that merge may itself need to be merged into other meetings as wel
 
 Make sure that your function won't "leave out" the last meeting.
 
-We can do this in O(n\lg{n})O(nlgn) time.
- */
+We can do this in O(nlgn) time.
 
-
+*/
+// Leetcode solution
+// O(NlogN) Time and O(N) Space
 function mergeRanges(timeRanges) {
   // sort meetings in order by startingTime
   timeRanges.sort((a, b) => a.startTime - b.startTime) // see explanation below
@@ -114,6 +115,61 @@ function mergeRanges(timeRanges) {
 // }
 
 // objs.sort( compare );
+
+// =================================================
+/*
+Interview Cake solution
+A) Treat meeting w/ earlier start time as first, the other as second
+B) If end time of first meeting >= start time of of second meeting,
+we merge the 2 meetings into 1 time range.
+Resulting time range 's start time = first meeting's start,
+and its end time = max of the two meetings' end times;
+
+
+We sort input array of meetings by start time so any meetings that
+ might need to be merged are not NEXT to each other
+
+ Then we walk thru sorted meetings from left to right. At each iteration:
+ 1) Merge current meeting with previous one
+ 2) Can't merge curr with prev meeting, so prev meeting can'tbe merged with ANY FUTURE meetings
+ and we throw the curr meeting into mergedMeetings
+ */
+
+
+function mergeRanges(meetings) {
+  // Create a deep copy of the meetings array
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Deep_Clone
+  // Thought: Why not const copy = [...meetings];?
+  const meetingsCopy = JSON.parse(JSON.stringify(meetings));
+
+  // Sort by start time
+  const sortedMeetings = meetingsCopy.sort((a, b) => {
+    return a.startTime - b.startTime;
+  });
+
+  // Initialize mergedMeetings with the earliest meeting
+  const mergedMeetings = [sortedMeetings[0]];
+
+  for (let i = 1; i < sortedMeetings.length; i++) {
+    const currentMeeting = sortedMeetings[i];
+    const lastMergedMeeting = mergedMeetings[mergedMeetings.length - 1];
+
+    // If the current meeting overlaps with the last merged meeting, use the
+    // later end time of the two
+    if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
+      lastMergedMeeting.endTime = Math.max(lastMergedMeeting.endTime, currentMeeting.endTime);
+    } else {
+
+      // Add the current meeting since it doesn't overlap
+      mergedMeetings.push(currentMeeting);
+    }
+  }
+
+  return mergedMeetings;
+}
+
+
+
 
 /*
 -Complexity-
